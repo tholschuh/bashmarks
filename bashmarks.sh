@@ -28,13 +28,13 @@
 # g b[TAB] - tab completion is available
 # p bookmarkname - prints the bookmark
 # p b[TAB] - tab completion is available
-# d bookmarkname - deletes the bookmark
-# d [TAB] - tab completion is available
-# l - list all bookmarks
+# bd bookmarkname - deletes the bookmark
+# bd [TAB] - tab completion is available
+# bl - list all bookmarks
 
 # setup file to store bookmarks
 if [ ! -n "$SDIRS" ]; then
-    SDIRS=~/.sdirs
+    SDIRS=~/.local/sdirs
 fi
 touch $SDIRS
 
@@ -64,7 +64,7 @@ function p {
 }
 
 # delete bookmark
-function d {
+function bd {
     check_help $1
     _bookmark_name_valid "$@"
     if [ -z "$exit_message" ]; then
@@ -80,14 +80,14 @@ function check_help {
         echo 's <bookmark_name> - Saves the current directory as "bookmark_name"'
         echo 'g <bookmark_name> - Goes (cd) to the directory associated with "bookmark_name"'
         echo 'p <bookmark_name> - Prints the directory associated with "bookmark_name"'
-        echo 'd <bookmark_name> - Deletes the bookmark'
-        echo 'l                 - Lists all available bookmarks'
+        echo 'bd <bookmark_name> - Deletes the bookmark'
+        echo 'bl                 - Lists all available bookmarks'
         kill -SIGINT $$
     fi
 }
 
 # list bookmarks with dirnam
-function l {
+function bl {
     check_help $1
     source $SDIRS
         
